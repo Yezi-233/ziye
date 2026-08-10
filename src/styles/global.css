@@ -3052,8 +3052,22 @@ html.nav-concealed .projects-side-nav {
   }
   html,
   body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    width: 100%;
+  }
+  #root,
+  main,
+  .dotted-zone,
+  .projects-overview,
+  .projects-overview-layout,
+  .projects-scroll-stack,
+  .scroll-stack-inner,
+  .scroll-stack-card-wrapper,
+  .scroll-stack-card {
+    max-width: 100% !important;
     overflow-x: hidden;
-    max-width: 100vw;
+    box-sizing: border-box;
   }
   .container {
     padding-inline: var(--m-gutter);
@@ -3242,16 +3256,187 @@ html.nav-concealed .projects-side-nav {
   .media-video-play {
     font-size: 13px;
   }
+  /* ---- 四个能力模块：全部纵向完整展示，禁止横向裁切 ---- */
+  .ability-featured,
+  .ability-featured.is-reverse,
+  .ability-sim-featured,
+  .projects-overview .ability-featured,
+  .projects-overview .ability-featured.is-reverse,
+  .projects-overview .ability-sim-featured {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible;
+  }
+  .ability-featured-media,
+  .ability-featured-body,
+  .ability-sim-head {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .ability-featured-copy {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  .ability-project-title,
+  .ability-summary,
+  .ability-work li {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    white-space: normal !important;
+  }
+
+  .paper-showcase,
+  .paper-idea,
+  .paper-idea img,
+  .media-showcase,
+  .media-carousel,
+  .media-video,
+  .lazy-video,
+  .ability-sim-overview,
+  .ability-sim-overview img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-width: 0 !important;
+  }
+  .paper-idea {
+    overflow: hidden;
+  }
+  .paper-idea img {
+    object-fit: contain;
+    object-position: left top;
+  }
+  .paper-pages-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .paper-detail-link {
+    min-width: 0;
+    width: 100%;
+  }
+
   .projects-overview .media-carousel-viewport,
   .projects-overview .media-video,
   .projects-overview .lazy-video {
-    max-height: 220px;
+    max-height: 200px;
   }
   .projects-overview .media-carousel-viewport {
     aspect-ratio: 4 / 3;
   }
+  .media-showcase.is-car-media {
+    max-width: 100% !important;
+  }
 
-  /* 项目概况卡片：静态列表，去掉堆叠留白 */
+  /* 仿真 FocusCarousel：改为纵向卡片列表，四张完整可见 */
+  .focus-carousel {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  .focus-track {
+    height: auto !important;
+    perspective: none !important;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow: visible;
+  }
+  .focus-card,
+  .focus-card.is-active,
+  .focus-card.is-hidden,
+  .focus-card:hover {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    aspect-ratio: 16 / 10;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    display: block !important;
+    pointer-events: auto !important;
+    box-shadow: 0 8px 24px rgba(45, 108, 196, 0.1);
+  }
+  .focus-caption {
+    max-width: 100%;
+    margin-top: 10px;
+    padding: 10px 12px;
+    opacity: 1;
+    transform: none;
+    max-height: none;
+    overflow: visible;
+    pointer-events: auto;
+    border: 1px solid rgba(212, 184, 32, 0.35);
+    background: rgba(255, 249, 196, 0.65);
+  }
+  .focus-caption.is-open {
+    max-height: none;
+  }
+  .focus-dots {
+    display: none;
+  }
+
+  /* 学科交叉：四张项目卡纵向排列完整展示 */
+  .cross-nesh-rail {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-auto-flow: unset !important;
+    grid-auto-columns: unset !important;
+    overflow: visible !important;
+    gap: 14px;
+    padding: 4px 0 8px;
+    scroll-snap-type: none;
+    max-width: 100%;
+  }
+  .cross-nesh-rail > *,
+  .cross-card {
+    flex: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+  .cross-card,
+  .cross-card.is-active,
+  .cross-card:hover {
+    transform: none !important;
+  }
+  .cross-card-visual {
+    min-height: 0 !important;
+    max-height: 160px;
+    margin: 10px 10px 0;
+  }
+  .cross-card-visual img {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 160px;
+    object-fit: cover;
+  }
+  .cross-card-body {
+    padding: 12px 12px 14px;
+  }
+  .cross-card-title { font-size: 15px; }
+  .cross-card-desc { font-size: 13px; line-height: 1.55; }
+  .cross-explain-slot { margin-top: 8px; min-height: 0; }
+  .cross-explain-reserve { display: none; min-height: 0; height: 0; }
+  .cross-expand-gallery { gap: 10px; }
+  .cross-detail-inner,
+  .cross-detail-inner.is-showcase {
+    grid-template-columns: 1fr !important;
+  }
+  .cross-expand-showcase,
+  .cross-expand-media {
+    max-width: 100% !important;
+  }
+
+  /* 项目概况卡片：静态列表 */
   .projects-scroll-stack.is-stack-disabled .scroll-stack-inner {
     padding-bottom: 0;
   }
@@ -3259,32 +3444,18 @@ html.nav-concealed .projects-side-nav {
     margin-bottom: 16px;
   }
   .projects-overview .scroll-stack-card.projects-overview-panel {
-    padding: 16px 12px;
-    border-radius: 18px;
+    padding: 14px 10px;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .projects-overview .scroll-stack-card.projects-overview-panel * {
+    max-width: 100%;
   }
   .cross-nesh-head {
     grid-template-columns: 1fr;
     gap: 10px;
     align-items: start;
   }
-  .cross-nesh-rail {
-    display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    grid-auto-columns: unset;
-    padding-bottom: 4px;
-    -webkit-overflow-scrolling: touch;
-    max-width: 100%;
-  }
-  .cross-nesh-rail > * {
-    flex: 0 0 min(78%, 260px);
-    max-width: min(78%, 260px);
-  }
-  .cross-card-title { font-size: 15px; }
-  .cross-card-desc { font-size: 13px; line-height: 1.55; }
-  .cross-explain-slot { margin-top: 8px; min-height: 0; }
-  .cross-explain-reserve { display: none; min-height: 0; height: 0; }
-  .cross-expand-gallery { gap: 10px; }
 
   .practice-strip {
     align-items: flex-start;
