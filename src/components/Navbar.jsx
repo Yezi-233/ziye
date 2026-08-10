@@ -39,7 +39,8 @@ export default function Navbar() {
 
       const overview = document.getElementById('projects-overview')
       const practice = document.getElementById('practice')
-      if (overview && window.innerWidth > 860) {
+      // Hide top nav only when desktop side nav is visible (≥1100px)
+      if (overview && window.innerWidth >= 1100) {
         const oRect = overview.getBoundingClientRect()
         const pTop = practice?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY
         const entered = oRect.top < window.innerHeight * 0.42

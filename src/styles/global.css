@@ -130,9 +130,9 @@ html.gsap-ready [data-reveal] {
   border-bottom: 1px solid transparent;
 }
 .nav.is-concealed {
-  transform: translateY(-110%);
-  opacity: 0;
-  pointer-events: none;
+  transform: translateY(-110%) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 html.nav-concealed .projects-side-nav {
   top: 16px;
@@ -3038,23 +3038,39 @@ html.nav-concealed .projects-side-nav {
 
 /* 手机端主适配（电脑端样式不动） */
 @media (max-width: 860px) {
-  /* 1. 加宽除「项目概况」外其他板块 */
+  /* 统一左右边距：项目概述与前后板块一致，避免过宽/横向缩放 */
   .container {
-    padding-inline: 12px;
+    padding-inline: 16px;
     max-width: 100%;
+    box-sizing: border-box;
   }
   .section.abilities .container,
   .section.about .container,
   .section.practice .container,
   .contact .container {
-    padding-inline: 12px;
+    padding-inline: 16px;
   }
-  /* 项目概况保持相对收一点，视觉宽度不变大 */
+  .projects-overview {
+    overflow-x: hidden;
+  }
   .projects-overview-layout {
-    padding-inline: 18px;
+    padding-inline: 16px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   .projects-overview .container.projects-overview-main {
     padding-inline: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+  .projects-overview .scroll-stack-card.projects-overview-panel,
+  .projects-scroll-stack,
+  .projects-scroll-stack .scroll-stack-inner,
+  .projects-scroll-stack .scroll-stack-card-wrapper {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .section { padding-block: clamp(48px, 9vh, 80px); }
@@ -3254,11 +3270,11 @@ html.nav-concealed .projects-side-nav {
 }
 
 @media (max-width: 480px) {
-  .container { padding-inline: 10px; }
+  .container { padding-inline: 16px; }
   .section.abilities .container,
   .section.about .container,
   .section.practice .container,
-  .contact .container { padding-inline: 10px; }
+  .contact .container { padding-inline: 16px; }
   .projects-overview-layout { padding-inline: 16px; }
   .section { padding-block: 44px; }
   .about.section.about-top { padding-top: calc(72px + 28px); padding-bottom: 32px; }

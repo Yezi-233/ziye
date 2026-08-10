@@ -63,7 +63,13 @@ export default function useSiteMotion() {
         .fromTo(
           '.nav',
           { y: -28, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1.05, ease: EASE_SOFT },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1.05,
+            ease: EASE_SOFT,
+            clearProps: 'transform,opacity',
+          },
           0
         )
         .fromTo(
