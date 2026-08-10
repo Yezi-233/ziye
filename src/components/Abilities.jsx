@@ -118,6 +118,7 @@ export default function Abilities() {
   const [activeSection, setActiveSection] = useState('')
   const [copied, setCopied] = useState(false)
   const [crossActiveId, setCrossActiveId] = useState(null)
+  const [magnetOff, setMagnetOff] = useState(false)
   const overviewRef = useRef(null)
   const activeLockUntil = useRef(0)
   const activeTag = content.jumpTags.find((t) => t.id === activeTagId && t.detail) || null
@@ -133,6 +134,18 @@ export default function Abilities() {
   const selectCrossProject = useCallback((id) => {
     if (!id) return
     setCrossActiveId(id)
+  }, [])
+
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: none), (max-width: 980px)')
+    const sync = () => setMagnetOff(mq.matches)
+    sync()
+    mq.addEventListener?.('change', sync)
+    mq.addListener?.(sync)
+    return () => {
+      mq.removeEventListener?.('change', sync)
+      mq.removeListener?.(sync)
+    }
   }, [])
 
   useEffect(() => {
@@ -293,7 +306,7 @@ export default function Abilities() {
                     key={tag.id}
                     className={`abilities-orbit-item is-${i} ${tag.href ? 'is-link' : 'is-info'}`}
                   >
-                    <Magnet padding={50} disabled={false} magnetStrength={50}>
+                    <Magnet padding={50} disabled={magnetOff} magnetStrength={50}>
                       {tag.href ? (
                         <a href={tag.href}>{tag.label}</a>
                       ) : (
