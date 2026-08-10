@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState } from 'react'
+import { Fragment, useEffect, useId, useRef, useState } from 'react'
 import MediaShowcase from './MediaShowcase.jsx'
 import LazyVideo from './LazyVideo.jsx'
 
@@ -141,9 +141,10 @@ function ProjectCard({ project, index, isOpen, isLit, panelId, onSelect, onHover
 
 /**
  * Rail only (lives inside ScrollStack).
- * Detail card is rendered outside via CrossExplainCard + reserved slot.
+ * Detail card is rendered outside via CrossExplainCard + reserved slot on desktop;
+ * on mobile (inlineExpand), detail expands directly under the clicked card.
  */
-export default function CrossSlider({ item, activeId, onSelect }) {
+export default function CrossSlider({ item, activeId, onSelect, inlineExpand = false }) {
   const [hoverId, setHoverId] = useState(null)
   const panelId = useId()
   const rootRef = useRef(null)
@@ -177,21 +178,25 @@ export default function CrossSlider({ item, activeId, onSelect }) {
       </div>
 
       <div
-        className={`cross-nesh-rail ${litId ? 'is-dimming' : ''}`}
+        className={`cross-nesh-rail ${litId ? 'is-dimming' : ''} ${inlineExpand ? 'is-inline-expand' : ''}`}
         aria-label={`${item.title}项目列表`}
         onMouseLeave={() => setHoverId(null)}
       >
         {item.projects.map((p, index) => (
-          <ProjectCard
-            key={p.id}
-            project={p}
-            index={index}
-            isOpen={activeId === p.id}
-            isLit={litId === p.id}
-            panelId={panelId}
-            onHover={setHoverId}
-            onSelect={onSelect}
-          />
+          <Fragment key={p.id}>
+            <ProjectCard
+              project={p}
+              index={index}
+              isOpen={activeId === p.id}
+              isLit={litId === p.id}
+              panelId={panelId}
+              onHover={setHoverId}
+              onSelect={onSelect}
+            />
+            {inlineExpand && activeId === p.id && (
+              <CrossExplainCard project={p} panelId={panelId} />
+            )}
+          </Fragment>
         ))}
       </div>
     </article>

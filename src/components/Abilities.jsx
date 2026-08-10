@@ -136,7 +136,7 @@ export default function Abilities() {
   )
   const selectCrossProject = useCallback((id) => {
     if (!id) return
-    setCrossActiveId(id)
+    setCrossActiveId((prev) => (prev === id ? null : id))
   }, [])
 
   useEffect(() => {
@@ -439,6 +439,7 @@ export default function Abilities() {
                       item={item}
                       activeId={crossActiveId}
                       onSelect={selectCrossProject}
+                      inlineExpand={isMobile}
                     />
                   ) : (
                     <FeaturedBlock item={item} />
@@ -449,7 +450,7 @@ export default function Abilities() {
 
             {/* Reserved below last stack card: explanation stays outside pin transforms */}
             <div className="cross-explain-slot" aria-live="polite">
-              {crossActive ? (
+              {!isMobile && crossActive ? (
                 <CrossExplainCard project={crossActive} />
               ) : (
                 <div className="cross-explain-reserve" aria-hidden="true" />
