@@ -2977,14 +2977,14 @@ html.nav-concealed .projects-side-nav {
   .media-showcase.is-car-media { max-width: min(100%, 420px); }
 }
 
-/* 平板竖屏：导航收起，侧栏隐藏，能力环改流式 */
+/* 平板竖屏：导航也去掉；能力环改流式 */
 @media (max-width: 980px) {
+  .nav {
+    display: none !important;
+  }
   .nav-links { display: none; }
-  .nav-burger { display: flex; }
+  .nav-burger { display: none; }
   .nav-cta { display: none; }
-  .nav-inner { height: 72px; }
-  .nav-mobile { top: 72px; }
-  section[id] { scroll-margin-top: 72px; }
 
   .abilities-head {
     min-height: 0;
@@ -3036,25 +3036,56 @@ html.nav-concealed .projects-side-nav {
   }
 }
 
-/* 手机端主适配（电脑端样式不动） */
+/* 手机端主适配（电脑端样式绝对不动） */
 @media (max-width: 860px) {
-  /* 统一左右边距：项目概述与前后板块一致，避免过宽/横向缩放 */
+  /* 2. 去掉顶部导航（含汉堡菜单） */
+  .nav {
+    display: none !important;
+  }
+  html.nav-concealed .projects-side-nav {
+    top: 16px;
+  }
+
+  /* 以项目概述为基准的固定内容宽度；其余板块内容与底色对齐加宽 */
+  :root {
+    --m-gutter: 12px;
+  }
+  html,
+  body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
   .container {
-    padding-inline: 16px;
+    padding-inline: var(--m-gutter);
     max-width: 100%;
+    width: 100%;
     box-sizing: border-box;
   }
   .section.abilities .container,
   .section.about .container,
   .section.practice .container,
-  .contact .container {
-    padding-inline: 16px;
+  .contact .container,
+  .awards .container {
+    padding-inline: var(--m-gutter);
+    max-width: 100%;
   }
+  .dotted-zone,
+  .awards,
+  .practice,
+  .abilities,
+  .about,
+  .contact {
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+  /* 项目概述：同宽，并防止卡片/媒体横向溢出导致「展示不全」 */
   .projects-overview {
     overflow-x: hidden;
+    max-width: 100vw;
   }
   .projects-overview-layout {
-    padding-inline: 16px;
+    padding-inline: var(--m-gutter);
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
@@ -3071,14 +3102,79 @@ html.nav-concealed .projects-side-nav {
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+    overflow: hidden;
+  }
+  .projects-scroll-stack.is-stack-disabled .scroll-stack-card,
+  .projects-overview .scroll-stack-card {
+    position: relative !important;
+    transform: none !important;
+    filter: none !important;
+    will-change: auto !important;
+    left: auto !important;
+    top: auto !important;
+  }
+  .projects-overview .ability-featured,
+  .projects-overview .ability-featured.is-reverse,
+  .projects-overview .ability-sim-featured {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: none !important;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .projects-overview .ability-featured-media,
+  .projects-overview .ability-featured-body {
+    order: initial;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0;
+  }
+  .projects-overview .ability-featured-media {
+    margin-inline: 0 !important;
+  }
+  .projects-overview .media-showcase,
+  .projects-overview .media-carousel,
+  .projects-overview .media-video,
+  .projects-overview .lazy-video,
+  .projects-overview .paper-showcase,
+  .projects-overview .paper-idea,
+  .projects-overview img,
+  .projects-overview video {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto;
+  }
+  #structure .ability-featured-media,
+  #signal .ability-featured-media,
+  #simulation .ability-featured-media,
+  #structure .media-showcase,
+  #signal .paper-showcase,
+  #simulation .media-showcase,
+  #simulation .ability-sim-featured .ability-featured-media,
+  #structure .media-carousel,
+  #structure .media-video,
+  #signal .paper-idea,
+  #simulation .media-carousel,
+  #simulation .ability-sim-overview,
+  .media-showcase.is-car-media {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-inline: 0 !important;
   }
 
   .section { padding-block: clamp(48px, 9vh, 80px); }
   .about.section.about-top {
-    padding-top: calc(72px + 40px);
+    padding-top: 28px;
     min-height: auto;
     justify-content: flex-start;
     padding-bottom: 40px;
+  }
+  section[id],
+  article[id],
+  .cross-card[id] {
+    scroll-margin-top: 16px;
   }
 
   /* 3. 统一文字阶梯 */
@@ -3142,39 +3238,17 @@ html.nav-concealed .projects-side-nav {
   .ability-award { font-size: 12px; }
   .ability-tags li { font-size: 12px; padding: 5px 10px; }
 
-  #structure .ability-featured-media,
-  #signal .ability-featured-media,
-  #simulation .ability-featured-media,
-  #structure .media-showcase,
-  #signal .paper-showcase,
-  #simulation .media-showcase,
-  #simulation .ability-sim-featured .ability-featured-media {
-    width: min(100%, 300px);
-    max-width: 300px;
-    margin-inline: auto;
-  }
-  #structure .media-carousel,
-  #structure .media-video,
-  #signal .paper-idea,
-  #simulation .media-carousel,
-  #simulation .ability-sim-overview {
-    max-width: 300px;
-    margin-inline: auto;
-  }
-  .media-showcase.is-car-media {
-    max-width: min(100%, 280px);
-    margin-inline: auto;
-  }
-  .media-carousel,
-  .media-video,
-  .lazy-video,
-  .paper-showcase,
-  .ability-featured-media {
-    width: 100%;
-  }
   .media-slide-label,
   .media-video-play {
     font-size: 13px;
+  }
+  .projects-overview .media-carousel-viewport,
+  .projects-overview .media-video,
+  .projects-overview .lazy-video {
+    max-height: 220px;
+  }
+  .projects-overview .media-carousel-viewport {
+    aspect-ratio: 4 / 3;
   }
 
   /* 项目概况卡片：静态列表，去掉堆叠留白 */
@@ -3183,11 +3257,6 @@ html.nav-concealed .projects-side-nav {
   }
   .projects-scroll-stack.is-stack-disabled .scroll-stack-card-wrapper {
     margin-bottom: 16px;
-  }
-  .projects-scroll-stack.is-stack-disabled .scroll-stack-card {
-    will-change: auto;
-    transform: none !important;
-    filter: none !important;
   }
   .projects-overview .scroll-stack-card.projects-overview-panel {
     padding: 16px 12px;
@@ -3199,9 +3268,17 @@ html.nav-concealed .projects-side-nav {
     align-items: start;
   }
   .cross-nesh-rail {
-    grid-auto-columns: minmax(200px, 72vw);
+    display: flex;
     gap: 10px;
+    overflow-x: auto;
+    grid-auto-columns: unset;
     padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+  }
+  .cross-nesh-rail > * {
+    flex: 0 0 min(78%, 260px);
+    max-width: min(78%, 260px);
   }
   .cross-card-title { font-size: 15px; }
   .cross-card-desc { font-size: 13px; line-height: 1.55; }
@@ -3270,25 +3347,18 @@ html.nav-concealed .projects-side-nav {
 }
 
 @media (max-width: 480px) {
-  .container { padding-inline: 16px; }
+  :root { --m-gutter: 12px; }
+  .container { padding-inline: var(--m-gutter); }
   .section.abilities .container,
   .section.about .container,
   .section.practice .container,
-  .contact .container { padding-inline: 16px; }
-  .projects-overview-layout { padding-inline: 16px; }
+  .contact .container,
+  .awards .container { padding-inline: var(--m-gutter); }
+  .projects-overview-layout { padding-inline: var(--m-gutter); }
   .section { padding-block: 44px; }
-  .about.section.about-top { padding-top: calc(72px + 28px); padding-bottom: 32px; }
+  .about.section.about-top { padding-top: 24px; padding-bottom: 32px; }
   .practice-strip-meta { max-width: 100%; width: 100%; justify-content: space-between; }
   .practice-strip { flex-direction: column; }
-  #structure .ability-featured-media,
-  #signal .ability-featured-media,
-  #simulation .ability-featured-media,
-  #structure .media-showcase,
-  #signal .paper-showcase,
-  #simulation .media-showcase {
-    max-width: 260px;
-    width: min(100%, 260px);
-  }
 }
 
 /* 触控：保证可点区域 */

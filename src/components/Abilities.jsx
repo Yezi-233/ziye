@@ -119,7 +119,9 @@ export default function Abilities() {
   const [copied, setCopied] = useState(false)
   const [crossActiveId, setCrossActiveId] = useState(null)
   const [magnetOff, setMagnetOff] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia('(max-width: 860px)').matches : false
+  )
   const overviewRef = useRef(null)
   const activeLockUntil = useRef(0)
   const activeTag = content.jumpTags.find((t) => t.id === activeTagId && t.detail) || null
