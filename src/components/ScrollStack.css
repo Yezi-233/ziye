@@ -1,0 +1,42 @@
+.scroll-stack-scroller {
+  position: relative;
+  width: 100%;
+}
+
+.scroll-stack-scroller.is-window-scroll {
+  overflow: visible;
+  height: auto;
+}
+
+.scroll-stack-inner {
+  padding: 0 0 16px;
+  min-height: 0;
+}
+
+.scroll-stack-card-wrapper {
+  position: relative;
+  /* layout height stays in flow; transform only paints the card */
+}
+
+.scroll-stack-card {
+  position: relative;
+  z-index: 1;
+  transform-origin: top center;
+  will-change: transform;
+  backface-visibility: hidden;
+  width: 100%;
+  margin: 0;
+  padding: clamp(22px, 3vw, 40px);
+  border-radius: clamp(24px, 3vw, 36px);
+  box-sizing: border-box;
+  background: rgba(232, 243, 255, 0.97);
+  border: 1px solid rgba(165, 200, 242, 0.55);
+  box-shadow: 0 18px 48px rgba(45, 108, 196, 0.12);
+  /* no backdrop-filter while stacking — major jank source */
+}
+
+.scroll-stack-end {
+  width: 100%;
+  height: 1px;
+  pointer-events: none;
+}
