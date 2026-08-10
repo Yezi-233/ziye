@@ -178,7 +178,7 @@ export default function CrossSlider({ item, activeId, onSelect, inlineExpand = f
       </div>
 
       <div
-        className={`cross-nesh-rail ${litId ? 'is-dimming' : ''} ${inlineExpand ? 'is-inline-expand' : ''}`}
+        className={`cross-nesh-rail ${!inlineExpand && litId ? 'is-dimming' : ''} ${inlineExpand ? 'is-inline-expand' : ''}`}
         aria-label={`${item.title}项目列表`}
         onMouseLeave={() => setHoverId(null)}
       >

@@ -3320,16 +3320,40 @@ html.nav-concealed .projects-side-nav {
     width: 100%;
   }
 
+  /* 取消选中变淡引导 */
+  .cross-nesh-rail.is-dimming .cross-card:not(.is-lit),
+  .cross-nesh-rail.is-dimming .cross-card.is-lit,
+  .cross-nesh-rail.is-inline-expand .cross-card {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+
+  /* 视频演示去掉黑边：浅色底 + contain，避免黑底 letterbox */
+  .media-video,
+  .cross-expand-video,
+  .projects-overview .media-video,
+  .cross-explain-card .media-video {
+    background: #e6f2ff !important;
+    aspect-ratio: 16 / 9;
+    max-height: none;
+    height: auto;
+  }
+  .media-video video,
+  .media-video .lazy-video video,
+  .cross-expand-video .lazy-video video,
+  .projects-overview .media-video video,
+  .cross-explain-card .media-video video {
+    object-fit: contain !important;
+    background: #e6f2ff !important;
+  }
+  .media-video-play {
+    background: linear-gradient(180deg, rgba(230, 242, 255, 0.15), rgba(45, 108, 196, 0.28));
+  }
   .projects-overview .media-carousel-viewport,
   .projects-overview .media-video,
   .projects-overview .lazy-video {
-    max-height: 200px;
-  }
-  .projects-overview .media-carousel-viewport {
-    aspect-ratio: 4 / 3;
-  }
-  .media-showcase.is-car-media {
-    max-width: 100% !important;
+    max-height: none;
   }
 
   /* 仿真 FocusCarousel：改为纵向卡片列表，四张完整可见 */
