@@ -13,8 +13,12 @@ const EASE_SOFT = 'power2.inOut'
  */
 export default function useSiteMotion() {
   useEffect(() => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const reduced =
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      window.matchMedia('(max-width: 860px)').matches
     document.documentElement.classList.add('gsap-ready')
+    if (reduced) document.documentElement.classList.add('motion-lite')
+    else document.documentElement.classList.remove('motion-lite')
     const ctx = gsap.context(() => {
       // Neutralize legacy fade so GSAP owns the reveal
       gsap.set('[data-reveal]', { clearProps: 'transition' })

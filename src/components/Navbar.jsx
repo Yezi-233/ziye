@@ -39,7 +39,7 @@ export default function Navbar() {
 
       const overview = document.getElementById('projects-overview')
       const practice = document.getElementById('practice')
-      if (overview) {
+      if (overview && window.innerWidth > 860) {
         const oRect = overview.getBoundingClientRect()
         const pTop = practice?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY
         const entered = oRect.top < window.innerHeight * 0.42
@@ -49,6 +49,12 @@ export default function Navbar() {
           if (prev === next) return prev
           document.documentElement.classList.toggle('nav-concealed', next)
           return next
+        })
+      } else {
+        setConcealed((prev) => {
+          if (!prev) return prev
+          document.documentElement.classList.remove('nav-concealed')
+          return false
         })
       }
     }

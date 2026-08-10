@@ -2991,7 +2991,7 @@ html.nav-concealed .projects-side-nav {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 22px;
+    gap: 18px;
     width: 100%;
     max-width: 100%;
   }
@@ -3003,7 +3003,7 @@ html.nav-concealed .projects-side-nav {
     align-items: flex-start;
     text-align: left;
   }
-  .abilities-orbit-title { text-align: left; font-size: clamp(34px, 8vw, 52px); }
+  .abilities-orbit-title { text-align: left; font-size: clamp(32px, 7.5vw, 48px); }
   .abilities-orbit {
     position: static;
     display: flex;
@@ -3014,15 +3014,13 @@ html.nav-concealed .projects-side-nav {
     position: static;
     transform: none !important;
   }
-  .abilities-orbit-item > div {
-    animation: abilities-bubble-mobile 5.2s ease-in-out infinite;
-  }
+  .abilities-orbit-item > div { animation: none; }
   .abilities-orbit-item a,
   .abilities-orbit-item button {
     white-space: normal;
     padding: 11px 16px;
-    font-size: 13px;
-    line-height: 1.35;
+    font-size: 13.5px;
+    line-height: 1.4;
   }
   .abilities-orbit-pop {
     position: static;
@@ -3031,131 +3029,262 @@ html.nav-concealed .projects-side-nav {
     margin-top: 4px;
   }
 
-  .projects-overview-title { margin-bottom: clamp(28px, 4vh, 44px); }
+  .projects-overview-title { margin-bottom: clamp(24px, 4vh, 40px); }
   .projects-overview .scroll-stack-card.projects-overview-panel {
-    border-radius: 24px;
-    padding: 20px 16px;
+    border-radius: 22px;
+    padding: 18px 14px;
   }
-  .awards-marquee { animation-duration: 36s; }
 }
 
+/* 手机端主适配（电脑端样式不动） */
 @media (max-width: 860px) {
-  .section { padding-block: clamp(56px, 10vh, 96px); }
+  /* 1. 加宽除「项目概况」外其他板块 */
+  .container {
+    padding-inline: 12px;
+    max-width: 100%;
+  }
+  .section.abilities .container,
+  .section.about .container,
+  .section.practice .container,
+  .contact .container {
+    padding-inline: 12px;
+  }
+  /* 项目概况保持相对收一点，视觉宽度不变大 */
+  .projects-overview-layout {
+    padding-inline: 18px;
+  }
+  .projects-overview .container.projects-overview-main {
+    padding-inline: 0;
+  }
+
+  .section { padding-block: clamp(48px, 9vh, 80px); }
   .about.section.about-top {
-    padding-top: calc(72px + 48px);
+    padding-top: calc(72px + 40px);
     min-height: auto;
     justify-content: flex-start;
+    padding-bottom: 40px;
   }
-  .about-title { font-size: clamp(32px, 9vw, 48px); }
-  .about-left { max-width: min(260px, 72vw); }
-  .portrait-frame { max-width: min(240px, 68vw); }
-  .stats { grid-template-columns: repeat(2, 1fr); row-gap: 28px; column-gap: 12px; }
-  .stat { padding-inline: 8px; }
+
+  /* 3. 统一文字阶梯 */
+  body { font-size: 15px; line-height: 1.7; }
+  .about-title { font-size: clamp(30px, 8vw, 40px); }
+  .about-text { font-size: 15px; line-height: 1.75; }
+  .about-tags li { font-size: 12px; padding: 6px 12px; }
+  .about-skills-title,
+  .awards-title,
+  .abilities-orbit-title,
+  .projects-overview-title-zh,
+  .practice-section-title .projects-overview-title-zh {
+    font-size: clamp(28px, 7vw, 36px);
+  }
+  .projects-overview-title-en { font-size: 12px; letter-spacing: 0.18em; }
+  .stat-value { font-size: clamp(26px, 7vw, 34px); }
+  .stat-label { font-size: 12px; letter-spacing: 0.1em; }
+
+  .about-left { max-width: min(220px, 58vw); }
+  .portrait-frame { max-width: min(200px, 54vw); }
+  .stats { grid-template-columns: repeat(2, 1fr); row-gap: 22px; column-gap: 8px; }
+  .stat { padding-inline: 4px; }
   .stat:nth-child(3) { border-left: none; padding-left: 0; }
-  .stat-value { font-size: clamp(28px, 8vw, 40px); }
 
   .abilities-head,
   .practice-section-title { max-width: 100%; width: 100%; }
   .ability-gallery-grid { grid-template-columns: 1fr; }
-  .ability-featured-copy { margin-top: 48px; }
+
+  /* 2. 前三个能力：缩小媒体、放大文字 */
+  .ability-featured-copy { margin-top: 20px; }
   #structure .ability-featured-copy,
   #signal .ability-featured-copy,
   #simulation .ability-featured-copy {
-    margin-top: 28px;
+    margin-top: 16px;
   }
-  .ability-title { font-size: clamp(24px, 6.5vw, 34px); gap: 10px; }
-  .ability-title-no { width: 38px; height: 50px; }
-  .media-showcase,
-  .media-showcase.is-car-media,
-  .ability-featured-media,
-  .paper-showcase {
-    width: 100%;
-    max-width: 100%;
+  .ability-title {
+    font-size: clamp(22px, 5.8vw, 28px);
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .ability-title-no { width: 36px; height: 48px; }
+  .ability-title-no-num { font-size: 15px; }
+  .ability-project-title {
+    font-size: clamp(17px, 4.6vw, 20px) !important;
+    line-height: 1.5;
+    max-width: none;
+    margin-bottom: 12px;
+  }
+  #simulation .ability-project-title {
+    white-space: normal;
+    font-size: clamp(16px, 4.4vw, 19px) !important;
+  }
+  .ability-summary,
+  .ability-work li,
+  .ability-detail-text,
+  .cross-explain-text {
+    font-size: 15px;
+    line-height: 1.75;
+  }
+  .ability-label { font-size: 15px; }
+  .ability-award { font-size: 12px; }
+  .ability-tags li { font-size: 12px; padding: 5px 10px; }
+
+  #structure .ability-featured-media,
+  #signal .ability-featured-media,
+  #simulation .ability-featured-media,
+  #structure .media-showcase,
+  #signal .paper-showcase,
+  #simulation .media-showcase,
+  #simulation .ability-sim-featured .ability-featured-media {
+    width: min(100%, 300px);
+    max-width: 300px;
+    margin-inline: auto;
+  }
+  #structure .media-carousel,
+  #structure .media-video,
+  #signal .paper-idea,
+  #simulation .media-carousel,
+  #simulation .ability-sim-overview {
+    max-width: 300px;
+    margin-inline: auto;
+  }
+  .media-showcase.is-car-media {
+    max-width: min(100%, 280px);
+    margin-inline: auto;
   }
   .media-carousel,
   .media-video,
-  .lazy-video {
+  .lazy-video,
+  .paper-showcase,
+  .ability-featured-media {
     width: 100%;
+  }
+  .media-slide-label,
+  .media-video-play {
+    font-size: 13px;
+  }
+
+  /* 项目概况卡片：静态列表，去掉堆叠留白 */
+  .projects-scroll-stack.is-stack-disabled .scroll-stack-inner {
+    padding-bottom: 0;
+  }
+  .projects-scroll-stack.is-stack-disabled .scroll-stack-card-wrapper {
+    margin-bottom: 16px;
+  }
+  .projects-scroll-stack.is-stack-disabled .scroll-stack-card {
+    will-change: auto;
+    transform: none !important;
+    filter: none !important;
+  }
+  .projects-overview .scroll-stack-card.projects-overview-panel {
+    padding: 16px 12px;
+    border-radius: 18px;
   }
   .cross-nesh-head {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 10px;
     align-items: start;
   }
   .cross-nesh-rail {
-    grid-auto-columns: minmax(220px, 78vw);
-    gap: 12px;
-    padding-bottom: 8px;
+    grid-auto-columns: minmax(200px, 72vw);
+    gap: 10px;
+    padding-bottom: 4px;
   }
-  .cross-explain-slot { margin-top: 12px; }
-  .cross-expand-gallery { gap: 12px; }
+  .cross-card-title { font-size: 15px; }
+  .cross-card-desc { font-size: 13px; line-height: 1.55; }
+  .cross-explain-slot { margin-top: 8px; min-height: 0; }
+  .cross-explain-reserve { display: none; min-height: 0; height: 0; }
+  .cross-expand-gallery { gap: 10px; }
 
   .practice-strip {
     align-items: flex-start;
     gap: 10px;
     padding-block: 14px;
   }
+  .practice-strip-title { font-size: 15px; flex: 1; min-width: 0; }
+  .practice-strip-category { font-size: 12px; }
   .practice-strip-meta {
     flex-wrap: wrap;
     justify-content: flex-end;
     gap: 8px 12px;
     max-width: 42%;
   }
-  .practice-strip-title { flex: 1; min-width: 0; }
   .practice-detail-media.is-multi { grid-template-columns: 1fr; }
+  .practice-detail-text { font-size: 14px; line-height: 1.7; }
 
-  .contact-bar { grid-template-columns: 1fr; justify-items: start; gap: 28px; }
-  .contact-visual { width: min(140px, 42vw); }
-  .contact-foot { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .contact-bar { grid-template-columns: 1fr; justify-items: stretch; gap: 20px; }
+  .contact-visual { width: min(120px, 36vw); }
+  .contact-name { font-size: clamp(26px, 7vw, 34px); }
+  .contact-heading { font-size: 13px; }
+  .contact-tag { font-size: 13px; }
+  .contact-email { font-size: 14px; word-break: break-all; }
+  .contact-foot { flex-direction: column; align-items: flex-start; gap: 10px; font-size: 12px; }
   .contact-actions { flex-wrap: wrap; }
-  .contact-email { word-break: break-all; }
 
   .nav-mobile nav a {
-    font-size: clamp(28px, 8vw, 44px);
-    padding: 14px 0;
+    font-size: clamp(26px, 7vw, 36px);
+    padding: 12px 0;
+  }
+
+  /* 4. 简化动画 */
+  .abilities-orbit-item > div,
+  .awards-marquee,
+  .flower-bloom,
+  .nav.is-concealed {
+    animation: none !important;
+  }
+  .awards-marquee {
+    animation: none !important;
+    transform: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+  .awards-track {
+    animation: none !important;
+    transform: none !important;
+  }
+  .nav {
+    transition: background 0.25s ease, border-color 0.25s ease;
+  }
+  .nav.is-concealed {
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
   }
 }
 
-/* 小屏手机 */
 @media (max-width: 480px) {
-  .container { padding-inline: 14px; }
-  .projects-overview-layout { padding-inline: 14px; }
-  .section { padding-block: 48px; }
-  .about.section.about-top { padding-top: calc(72px + 36px); padding-bottom: 40px; }
-  .stats { grid-template-columns: 1fr 1fr; row-gap: 20px; }
-  .stat-label { font-size: 11px; letter-spacing: 0.08em; }
-  .abilities-orbit-item a,
-  .abilities-orbit-item button {
-    padding: 10px 14px;
-    font-size: 12.5px;
-  }
-  .projects-overview .scroll-stack-card.projects-overview-panel {
-    border-radius: 18px;
-    padding: 16px 12px;
-  }
+  .container { padding-inline: 10px; }
+  .section.abilities .container,
+  .section.about .container,
+  .section.practice .container,
+  .contact .container { padding-inline: 10px; }
+  .projects-overview-layout { padding-inline: 16px; }
+  .section { padding-block: 44px; }
+  .about.section.about-top { padding-top: calc(72px + 28px); padding-bottom: 32px; }
   .practice-strip-meta { max-width: 100%; width: 100%; justify-content: space-between; }
   .practice-strip { flex-direction: column; }
-  .awards-title { font-size: clamp(28px, 8vw, 40px); }
-  .contact-name { font-size: clamp(28px, 9vw, 40px); }
-  .contact-heading { font-size: 13px; }
+  #structure .ability-featured-media,
+  #signal .ability-featured-media,
+  #simulation .ability-featured-media,
+  #structure .media-showcase,
+  #signal .paper-showcase,
+  #simulation .media-showcase {
+    max-width: 260px;
+    width: min(100%, 260px);
+  }
 }
 
-/* 触控设备：加大可点区域，减弱悬停依赖 */
+/* 触控：保证可点区域 */
 @media (hover: none) and (pointer: coarse) {
   .abilities-orbit-item a,
   .abilities-orbit-item button,
-  .psn-link,
   .practice-strip,
-  .nav-cta,
   .contact-copy {
     min-height: 44px;
   }
-  .abilities-orbit-item > div {
-    animation: none;
-  }
 }
 
-/* 安全区（刘海屏） */
 @supports (padding: max(0px)) {
   .nav-inner {
     padding-left: max(0px, env(safe-area-inset-left));
@@ -3165,6 +3294,6 @@ html.nav-concealed .projects-side-nav {
     padding-bottom: max(24px, env(safe-area-inset-bottom));
   }
   .contact {
-    padding-bottom: max(48px, env(safe-area-inset-bottom));
+    padding-bottom: max(40px, env(safe-area-inset-bottom));
   }
 }

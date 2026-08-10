@@ -18,6 +18,7 @@ const ScrollStack = ({
   blurAmount = 0,
   useWindowScroll = true,
   onStackComplete,
+  disabled = false,
 }) => {
   const scrollerRef = useRef(null)
   const stackCompletedRef = useRef(false)
@@ -180,6 +181,17 @@ const ScrollStack = ({
     const scroller = scrollerRef.current
     if (!scroller) return undefined
 
+    if (disabled) {
+      const cards = Array.from(scroller.querySelectorAll('.scroll-stack-card'))
+      cards.forEach((card) => {
+        card.style.transform = ''
+        card.style.filter = ''
+        card.style.marginBottom = ''
+        card.style.zIndex = ''
+      })
+      return undefined
+    }
+
     const transformsCache = lastTransformsRef.current
     let ticking = false
     let measureTimer = 0
@@ -227,11 +239,11 @@ const ScrollStack = ({
       transformsCache.clear()
       isUpdatingRef.current = false
     }
-  }, [measureLayout, updateCardTransforms, children])
+  }, [measureLayout, updateCardTransforms, children, disabled])
 
   return (
     <div
-      className={`scroll-stack-scroller ${useWindowScroll ? 'is-window-scroll' : ''} ${className}`.trim()}
+      className={`scroll-stack-scroller ${useWindowScroll ? 'is-window-scroll' : ''} ${disabled ? 'is-stack-disabled' : ''} ${className}`.trim()}
       ref={scrollerRef}
     >
       <div className="scroll-stack-inner">
@@ -239,7 +251,7 @@ const ScrollStack = ({
           if (!isValidElement(child)) return child
           return <div className="scroll-stack-card-wrapper">{cloneElement(child)}</div>
         })}
-        <div className="scroll-stack-end" />
+        {!disabled && <div className="scroll-stack-end" />}
       </div>
     </div>
   )

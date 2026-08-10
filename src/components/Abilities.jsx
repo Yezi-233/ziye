@@ -119,6 +119,7 @@ export default function Abilities() {
   const [copied, setCopied] = useState(false)
   const [crossActiveId, setCrossActiveId] = useState(null)
   const [magnetOff, setMagnetOff] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const overviewRef = useRef(null)
   const activeLockUntil = useRef(0)
   const activeTag = content.jumpTags.find((t) => t.id === activeTagId && t.detail) || null
@@ -137,14 +138,18 @@ export default function Abilities() {
   }, [])
 
   useEffect(() => {
-    const mq = window.matchMedia('(hover: none), (max-width: 980px)')
-    const sync = () => setMagnetOff(mq.matches)
+    const mq = window.matchMedia('(max-width: 860px), (hover: none) and (pointer: coarse)')
+    const sync = () => {
+      const narrow = window.matchMedia('(max-width: 860px)').matches
+      setIsMobile(narrow)
+      setMagnetOff(mq.matches || narrow)
+    }
     sync()
     mq.addEventListener?.('change', sync)
-    mq.addListener?.(sync)
+    window.addEventListener('resize', sync)
     return () => {
       mq.removeEventListener?.('change', sync)
-      mq.removeListener?.(sync)
+      window.removeEventListener('resize', sync)
     }
   }, [])
 
@@ -413,6 +418,7 @@ export default function Abilities() {
             <ScrollStack
               className="projects-scroll-stack"
               useWindowScroll
+              disabled={isMobile}
               itemDistance={20}
               itemStackDistance={18}
               stackPosition="52px"
