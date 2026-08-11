@@ -40,9 +40,9 @@ export const about = {
   ],
   tags: ['机械设计与落地', '故障信号诊断', '精密控制', 'AI 探索', '创新实干'],
   skills: [
-    { label: '工程应用软件', items: ['SolidWorks', 'Abaqus', 'MATLAB'] },
-    { label: '编程仿真软件', items: ['Python', 'FlexSim'] },
-    { label: '前沿 AI 训练', items: ['Claude', 'Cursor'] },
+    { label: '工程应用软件', items: ['SolidWorks', 'Abaqus'] },
+    { label: '编程仿真软件', items: ['Python', 'Matlab'] },
+    { label: '前沿 AI 训练', items: ['Claude Code', 'Cursor'] },
     { label: '论文编辑软件', items: ['Origin', 'LaTeX', 'DeepL'] },
   ],
   stats: [
