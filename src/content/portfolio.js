@@ -50,7 +50,8 @@ export const about = {
     { value: '502', label: '英语四级' },
     { value: '3', label: '国家级奖项' },
     { value: '7', label: '省级奖项' },
-    { value: '2', label: '发明专利' },
+    { value: '2', label: '发明专利', note: '（实审中）' },
+    { value: '1', label: '实用新型专利', note: '（办登中）' },
   ],
 }
 
@@ -79,11 +80,12 @@ export const abilities = {
   title: '个人能力',
   overviewTitle: '项目概述',
   titleAccent: '多学科交叉与实践应用',
-  desc: '不按项目清单罗列，而是按能力维度展开——结构、信号、仿真与学科交叉。',
+  desc: '不按项目清单罗列，而是按能力维度展开——结构、信号、仿真、编程与学科交叉。',
   jumpTags: [
     { id: 'tag-structure', label: '结构设计能力', href: '#structure' },
     { id: 'tag-signal', label: '信号处理与故障诊断能力', href: '#signal' },
     { id: 'tag-simulation', label: '仿真分析能力', href: '#simulation' },
+    { id: 'tag-programming', label: '编程项目能力', href: '#programming' },
     { id: 'tag-frog', label: '仿生与机械结构设计', href: '#frog' },
     {
       id: 'tag-learn',
@@ -109,12 +111,13 @@ export const abilities = {
     { id: 'nav-structure', label: '结构设计能力', href: '#structure' },
     { id: 'nav-signal', label: '信号处理与故障诊断能力', href: '#signal' },
     { id: 'nav-simulation', label: '仿真分析能力', href: '#simulation' },
+    { id: 'nav-programming', label: '编程项目能力', href: '#programming' },
     { id: 'nav-frog', label: '仿生与机械结构设计', href: '#frog' },
     { id: 'nav-car', label: '精密控制与机械结构设计', href: '#car' },
     { id: 'nav-dust', label: '电场与机械结构设计', href: '#dust' },
     { id: 'nav-nozzle', label: '电磁与机械结构设计', href: '#nozzle' },
   ],
-  sideIntro: '工业工程 · 机械设计 · 智能诊断\n以结构落地与交叉实践串联项目能力',
+  sideIntro: '工业工程 · 机械设计 · 智能诊断\n以结构落地、算法编程与交叉实践串联项目能力',
   items: [
     {
       id: 'structure',
@@ -227,8 +230,46 @@ export const abilities = {
       },
     },
     {
-      id: 'cross',
+      id: 'programming',
       no: '04',
+      title: '编程项目能力',
+      en: 'PROGRAMMING',
+      layout: 'featured',
+      reverse: true,
+      hue: 210,
+      project: {
+        title: '基于多目标模型与模拟退火算法的机场值机柜台优化',
+        award: '中国大学生机械工程创新创意大赛国家级三等奖',
+        summary:
+          '通过 GERT 流程分析与模拟退火多目标优化算法，针对 J 机场值机系统进行旅客分流和柜台动态配置，实现运营成本降低约 40%、旅客平均等待时间减少约 20% 的目标。',
+        work: [
+          'Python 代码编程实现算法落地，将数学问题转化为可求解程序',
+          '构建多目标优化模型，求解最优柜台动态配置方案',
+        ],
+        tags: ['Python', '模拟退火', '多目标优化', '值机系统'],
+        image: '/images/projects/programming/slide-1.jpg',
+        galleryHint: '系统界面',
+        sourceUrl: '/code/checkin-optimization.html',
+        sourceLabel: '点击查看源码',
+        slides: [
+          {
+            src: '/images/projects/programming/slide-1.jpg',
+            label: '求解方法选择与模型构建',
+          },
+          {
+            src: '/images/projects/programming/slide-2.jpg',
+            label: '总体模型与人工/自助值机假设',
+          },
+          {
+            src: '/images/projects/programming/slide-3.jpg',
+            label: '数据验证与算法求解',
+          },
+        ],
+      },
+    },
+    {
+      id: 'cross',
+      no: '05',
       title: '学科交叉设计能力',
       en: 'CROSS-DISCIPLINARY',
       layout: 'gallery',

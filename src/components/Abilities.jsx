@@ -66,6 +66,16 @@ function FeaturedBlock({ item }) {
             hint={p.galleryHint}
           />
         )}
+        {p.sourceUrl ? (
+          <a
+            className="ability-source-btn"
+            href={p.sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {p.sourceLabel || '点击查看源码'}
+          </a>
+        ) : null}
       </div>
       <div className="ability-featured-body">
         <AbilityTitle no={item.no} title={item.title} />

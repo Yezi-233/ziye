@@ -122,6 +122,7 @@ export default function About() {
                 <div className="stat" key={s.label} data-reveal data-delay={i * 90}>
                   <span className="stat-value">{s.value}</span>
                   <span className="stat-label">{s.label}</span>
+                  {s.note ? <span className="stat-note">{s.note}</span> : null}
                 </div>
               ))}
             </div>
