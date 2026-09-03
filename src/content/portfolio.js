@@ -250,7 +250,7 @@ export const abilities = {
         image: '/images/projects/programming/slide-1.jpg',
         galleryHint: '系统界面',
         sourceUrl: '/code/checkin-optimization.html',
-        sourceLabel: '点击查看源码',
+        sourceLabel: '点击此处查看源码',
         slides: [
           {
             src: '/images/projects/programming/slide-1.jpg',

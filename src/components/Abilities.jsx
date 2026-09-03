@@ -68,12 +68,14 @@ function FeaturedBlock({ item }) {
         )}
         {p.sourceUrl ? (
           <a
-            className="ability-source-btn"
+            className="paper-detail-link ability-source-link"
             href={p.sourceUrl}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {p.sourceLabel || '点击查看源码'}
+            <span className="paper-detail-pulse" aria-hidden="true" />
+            {p.sourceLabel || '点击此处查看源码'}
+            <span aria-hidden="true">→</span>
           </a>
         ) : null}
       </div>

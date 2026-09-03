@@ -1476,26 +1476,42 @@ html.nav-concealed .projects-side-nav {
   max-width: 100%;
   border-radius: 18px;
 }
-.ability-source-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  margin-top: 14px;
-  padding: 14px 18px;
-  border-radius: 12px;
-  border: 1px solid var(--line-strong);
-  background: linear-gradient(180deg, #f7fbff 0%, #eef5fc 100%);
-  color: var(--deep);
-  font-size: 14px;
-  letter-spacing: 0.12em;
+.ability-source-link {
+  margin-top: 16px;
+  align-self: center;
+  width: fit-content;
+  max-width: 100%;
   text-decoration: none;
-  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
-.ability-source-btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: #ffffff;
+#programming .ability-featured-media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#programming .media-showcase {
+  width: 100%;
+}
+/* 编程项目：轮播按原图比例完整展示，不裁切边缘 */
+#programming .media-carousel {
+  background: #fff;
+}
+#programming .media-carousel-viewport {
+  aspect-ratio: auto;
+  height: auto;
+}
+#programming .media-slide {
+  position: absolute;
+  inset: 0;
+}
+#programming .media-slide.is-active {
+  position: relative;
+  inset: auto;
+}
+#programming .media-slide img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: #fff;
 }
 /* 论文流程图完整展示，不裁剪；宽度与同列其他项目媒体一致 */
 #signal .paper-idea {
@@ -1881,10 +1897,6 @@ html.nav-concealed .projects-side-nav {
 .ability-sim-featured .media-slide img {
   object-fit: contain;
   background: #fff;
-}
-#programming .media-slide img {
-  object-fit: contain;
-  background: #eef4fb;
 }
 .ability-sim-featured .media-slide-label {
   max-width: min(88%, 280px);
