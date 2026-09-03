@@ -1455,8 +1455,7 @@ html.nav-concealed .projects-side-nav {
 }
 #structure .ability-featured-copy,
 #signal .ability-featured-copy,
-#simulation .ability-featured-copy,
-#programming .ability-featured-copy {
+#simulation .ability-featured-copy {
   margin-top: 96px;
 }
 #structure .media-showcase,
@@ -1483,10 +1482,23 @@ html.nav-concealed .projects-side-nav {
   max-width: 100%;
   text-decoration: none;
 }
+/* 编程项目：右侧媒体加宽放大，约占总宽 60%（对齐红框） */
+#programming.ability-featured,
+#programming.ability-featured.is-reverse {
+  grid-template-columns: minmax(260px, 4fr) minmax(420px, 6.2fr);
+  gap: clamp(24px, 3vw, 44px);
+  min-height: 0;
+  align-items: start;
+}
+#programming .ability-featured-copy {
+  margin-top: 28px;
+}
 #programming .ability-featured-media {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
+  width: 100%;
+  max-width: none;
 }
 #programming .media-showcase {
   width: 100%;
@@ -1494,10 +1506,12 @@ html.nav-concealed .projects-side-nav {
 /* 编程项目：轮播按原图比例完整展示，不裁切边缘 */
 #programming .media-carousel {
   background: #fff;
+  width: 100%;
 }
 #programming .media-carousel-viewport {
   aspect-ratio: auto;
   height: auto;
+  width: 100%;
 }
 #programming .media-slide {
   position: absolute;
@@ -1512,6 +1526,7 @@ html.nav-concealed .projects-side-nav {
   height: auto;
   object-fit: contain;
   background: #fff;
+  display: block;
 }
 /* 论文流程图完整展示，不裁剪；宽度与同列其他项目媒体一致 */
 #signal .paper-idea {
