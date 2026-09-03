@@ -1482,35 +1482,35 @@ html.nav-concealed .projects-side-nav {
   max-width: 100%;
   text-decoration: none;
 }
-/* 编程项目：右侧媒体加宽放大，约占总宽 60%（对齐红框） */
+/* 编程项目：与鲍鱼机同列宽/卡片高度；媒体上下居中；图用 4:3 框内 contain 不裁切 */
 #programming.ability-featured,
 #programming.ability-featured.is-reverse {
-  grid-template-columns: minmax(260px, 4fr) minmax(420px, 6.2fr);
-  gap: clamp(24px, 3vw, 44px);
-  min-height: 0;
-  align-items: start;
+  grid-template-columns: 7fr minmax(300px, 5fr);
+  gap: clamp(36px, 5vw, 88px);
+  min-height: clamp(560px, 72vh, 720px);
+  align-items: center;
 }
 #programming .ability-featured-copy {
-  margin-top: 28px;
+  margin-top: 0;
 }
 #programming .ability-featured-media {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  max-width: none;
+  max-width: 100%;
+  align-self: center;
 }
 #programming .media-showcase {
   width: 100%;
 }
-/* 编程项目：轮播按原图比例完整展示，不裁切边缘 */
 #programming .media-carousel {
   background: #fff;
   width: 100%;
 }
 #programming .media-carousel-viewport {
-  aspect-ratio: auto;
-  height: auto;
+  aspect-ratio: 4 / 3;
   width: 100%;
 }
 #programming .media-slide {
@@ -1518,12 +1518,12 @@ html.nav-concealed .projects-side-nav {
   inset: 0;
 }
 #programming .media-slide.is-active {
-  position: relative;
-  inset: auto;
+  position: absolute;
+  inset: 0;
 }
 #programming .media-slide img {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: contain;
   background: #fff;
   display: block;
@@ -3028,6 +3028,12 @@ html.nav-concealed .projects-side-nav {
   .practice-strip-category { letter-spacing: 0.08em; }
   .ability-featured,
   .ability-featured.is-reverse { grid-template-columns: 1fr; min-height: 0; }
+  #programming.ability-featured,
+  #programming.ability-featured.is-reverse {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    align-items: start;
+  }
   .focus-track { height: clamp(240px, 52vw, 340px); }
   .focus-card {
     width: min(68%, 420px);
@@ -3341,7 +3347,13 @@ html.nav-concealed .projects-side-nav {
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
+    min-height: 0 !important;
     overflow: visible;
+  }
+  #programming.ability-featured,
+  #programming.ability-featured.is-reverse {
+    align-items: stretch !important;
+    min-height: 0 !important;
   }
   .ability-featured-media,
   .ability-featured-body,
